@@ -1,6 +1,5 @@
 ﻿using DecisionTech.PriceCalculation.Models;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 
 namespace DecisionTech.PriceCalculation.Utilities
@@ -12,7 +11,10 @@ namespace DecisionTech.PriceCalculation.Utilities
             return discounts.Join(products, 
                                   d => d.TargetProductId, 
                                   p => p.ProductId,
-                                  (dis, prod) => new Product(prod.ProductId, prod.ProductName, prod.Price * (dis.Percentage/100) * (products.First(p => p.ProductId == dis.ProductId).Quantity / dis.Quantity), prod.Quantity ))
+                                  (dis, prod) => new Product(prod.ProductId, 
+                                                            prod.ProductName,
+                                                            CalculateProductDiscountedPrice(prod, dis, products.FindByProductId(dis.ProductId)),
+                                                            prod.Quantity ))
                                   .Sum(p => p.Price);
         }
 
@@ -21,5 +23,14 @@ namespace DecisionTech.PriceCalculation.Utilities
             return products.Sum(p => p.Quantity * p.Price);
         }
 
+        public static Product FindByProductId(this IEnumerable<Product> products, int productId)
+        {
+            return products.First(p => p.ProductId == productId);
+        }
+
+        public static decimal CalculateProductDiscountedPrice(Product prod, Discount dis, Product targetProduct)
+        {
+            return prod.Price * (dis.Percentage / 100) * (targetProduct.Quantity / dis.Quantity);
+        }
     }
 }
