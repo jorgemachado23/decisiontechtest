@@ -2,8 +2,9 @@
 {
     public class Product
     {
-        public Product(string productName, decimal price, int quantity)
+        public Product(int productId, string productName, decimal price, int quantity)
         {
+            ProductId = productId;
             ProductName = productName;
             Price = price;
             Quantity = quantity;
