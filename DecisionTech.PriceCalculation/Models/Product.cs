@@ -6,6 +6,7 @@
         {
             ProductName = productName;
             Price = price;
+            Quantity = quantity;
         }
 
         public int ProductId { get; set; }

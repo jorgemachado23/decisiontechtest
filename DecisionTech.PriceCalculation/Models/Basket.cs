@@ -12,6 +12,6 @@ namespace DecisionTech.PriceCalculation.Models
 
         public decimal Total { get; set; }
 
-        IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }
