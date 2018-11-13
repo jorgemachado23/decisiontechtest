@@ -28,12 +28,11 @@ namespace DecisionTech.PriceCalculation.Tests
                 new Product(3,"Milk", 1.15m, 1)
             };
 
-            var basket = new Basket(products);
             TestAssertion(2.95m, products);
         }
 
         [Fact]
-        public void Should_Calculate_Basket_Total_With_One_Discounts()
+        public void Should_Calculate_Basket_Total_With_One_Discount()
         {
             var products = new Product[]
             {
@@ -41,15 +40,12 @@ namespace DecisionTech.PriceCalculation.Tests
                 new Product(2,"Butter", 0.8m,2),
             };
 
-            var basket = new Basket(products);
             TestAssertion(3.10m, products);
 
             products = new Product[]
             {
                 new Product(3,"Milk",1.15m, 4)
             };
-
-            basket.Products = products;
 
             TestAssertion(3.45m, products);
         }
@@ -63,6 +59,7 @@ namespace DecisionTech.PriceCalculation.Tests
                 new Product(2,"Butter", 0.8m, 2),
                 new Product(3,"Milk", 1.15m, 8)
             };
+
             TestAssertion(9m, products);
         }
 
