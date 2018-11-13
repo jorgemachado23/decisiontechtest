@@ -29,7 +29,7 @@ namespace DecisionTech.PriceCalculation.Tests
             };
 
             var basket = new Basket(products);
-            TestAssertion(2.95m, basket);
+            TestAssertion(2.95m, products);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace DecisionTech.PriceCalculation.Tests
             };
 
             var basket = new Basket(products);
-            TestAssertion(3.10m, basket);
+            TestAssertion(3.10m, products);
 
             products = new Product[]
             {
@@ -51,7 +51,7 @@ namespace DecisionTech.PriceCalculation.Tests
 
             basket.Products = products;
 
-            TestAssertion(3.45m, basket);
+            TestAssertion(3.45m, products);
         }
 
         [Fact]
@@ -63,13 +63,12 @@ namespace DecisionTech.PriceCalculation.Tests
                 new Product(2,"Butter", 0.8m, 2),
                 new Product(3,"Milk", 1.15m, 8)
             };
-
-            var basket = new Basket(products);
-            TestAssertion(9m, basket);
+            TestAssertion(9m, products);
         }
 
-        private void TestAssertion(decimal total, Basket basket)
+        private void TestAssertion(decimal total, IEnumerable<Product> products)
         {
+            var basket = new Basket(products);
             basket = _basketService.CalculateTotal(basket);
             Assert.Equal(total, basket.Total);
         }
