@@ -27,27 +27,27 @@ namespace DecisionTech.PriceCalculation.Tests
             };
 
             var basket = new Basket(products);
-            //basket = _basketService.CalculateTotal(basket);
-            //Assert.Equal(2.95m, basket.Total);
+            basket = _basketService.CalculateTotal(basket);
+            Assert.Equal(2.95m, basket.Total);
 
-            //products = new Product[]
-            //{
-            //    new Product(1,"Bread", 1, 2),
-            //    new Product(2,"Butter", 0.8m,2),
-            //};
+            products = new Product[]
+            {
+                new Product(1,"Bread", 1, 2),
+                new Product(2,"Butter", 0.8m,2),
+            };
 
-            //basket.Products = products;
-            //basket = _basketService.CalculateTotal(basket);
-            //Assert.Equal(3.10m, basket.Total);
+            basket.Products = products;
+            basket = _basketService.CalculateTotal(basket);
+            Assert.Equal(3.10m, basket.Total);
 
-            //products = new Product[]
-            //{
-            //    new Product(3,"Milk",1.15m, 4)
-            //};
+            products = new Product[]
+            {
+                new Product(3,"Milk",1.15m, 4)
+            };
 
-            //basket.Products = products;
-            //basket = _basketService.CalculateTotal(basket);
-            //Assert.Equal(3.45m, basket.Total);
+            basket.Products = products;
+            basket = _basketService.CalculateTotal(basket);
+            Assert.Equal(3.45m, basket.Total);
 
 
             products = new Product[]
